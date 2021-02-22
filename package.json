@@ -2,7 +2,7 @@
   "name": "user-management-template-backend",
   "description": "User Management Template Backend",
   "scripts": {
-    "start": "npm install && cross-env NODE_ENV=production nodemon ./src/index.js",
+    "start": "cross-env NODE_ENV=production nodemon ./src/index.js",
     "start:dev": "cross-env nodemon ./src/index.js",
     "reset": "cross-env node ./src/db/reset.js"
   },
