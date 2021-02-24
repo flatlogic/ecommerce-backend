@@ -15,8 +15,9 @@ console.log(env);
     rejectUnauthorized: false
   },
     dialectOptions: {
-    ssl: true
-  }
+    ssl: true,
+      rejectUnauthorized: false
+    }
 });
 
 fs
