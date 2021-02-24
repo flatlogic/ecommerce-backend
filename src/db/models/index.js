@@ -10,7 +10,11 @@ const db = {};
 
 let sequelize;
 console.log(env);
-  sequelize = new Sequelize("postgres://rkwmilbswrezam:e35716dfbd9e5c580f33bae21bdff7f22c8e843da2378c0281c73c7c3bf5af2b@ec2-34-230-167-186.compute-1.amazonaws.com:5432/d86kb64k965n7b?sslmode=require");
+  sequelize = new Sequelize("postgres://rkwmilbswrezam:e35716dfbd9e5c580f33bae21bdff7f22c8e843da2378c0281c73c7c3bf5af2b@ec2-34-230-167-186.compute-1.amazonaws.com:5432/d86kb64k965n7b?sslmode=require", {
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
 
 fs
   .readdirSync(__dirname)
