@@ -13,9 +13,7 @@ console.log(env);
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable], config);
 } else {
-  sequelize = new Sequelize("postgres://rkwmilbswrezam:e35716dfbd9e5c580f33bae21bdff7f22c8e843da2378c0281c73c7c3bf5af2b@ec2-34-230-167-186.compute-1.amazonaws.com:5432/d86kb64k965n7b", {
-    ssl: true
-  });
+  sequelize = new Sequelize("postgres://rkwmilbswrezam:e35716dfbd9e5c580f33bae21bdff7f22c8e843da2378c0281c73c7c3bf5af2b@ec2-34-230-167-186.compute-1.amazonaws.com:5432/d86kb64k965n7b?sslmode=require");
 }
 
 fs
