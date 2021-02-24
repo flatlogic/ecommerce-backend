@@ -35,5 +35,5 @@
   "engines": {
     "node": ">=8"
   },
-  "private": true,
+  "private": true
 }
