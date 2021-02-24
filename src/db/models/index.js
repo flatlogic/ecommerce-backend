@@ -15,9 +15,11 @@ console.log(env);
     rejectUnauthorized: false
   },
     dialectOptions: {
-    ssl: true,
-      rejectUnauthorized: false
-    }
+      ssl: {
+        require: true,
+        rejectUnauthorized: false // <<<<<<< YOU NEED THIS
+      }
+    },
 });
 
 fs
