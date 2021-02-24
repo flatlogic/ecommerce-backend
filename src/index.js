@@ -56,6 +56,10 @@ const publicDir = path.join(
   '../../../frontend/build',
 );
 
+app.get('/test', (req,res) => {
+  res.send('test api')
+})
+
 app.get("/images/:entity/:id.:ext", (req, res) => {
   res.sendFile(
       `${__dirname}/images/${req.params.entity}/${req.params.id}.${req.params.ext}`
