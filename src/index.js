@@ -50,12 +50,6 @@ app.use('/api/payments', passport.authenticate('jwt', {session: false}), payment
 
 app.use('/api/users', passport.authenticate('jwt', {session: false}), usersRoutes);
 
-
-const publicDir = path.join(
-  __dirname,
-  '../../../frontend/build',
-);
-
 app.get("/images/:entity/:id.:ext", (req, res) => {
   res.sendFile(
       `${__dirname}/images/${req.params.entity}/${req.params.id}.${req.params.ext}`
