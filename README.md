@@ -18,7 +18,10 @@
   - `sudo apt update`
   - `sudo apt install postgresql postgresql-contrib`
 
-###### 2. Create db and admin user:
+###### 2. Install sequelize-cli:
+- `sudo npm install -g sequelize-cli`
+
+###### 3. Create db and admin user:
  - Before run and test connection, make sure you have created a database as described in the above configuration. You can use the `psql` command to create a user and database.
    - `psql postgres --u postgres`
 
@@ -31,19 +34,19 @@
   - `psql postgres -U admin`
 
 - Type this command to creating a new database.
-  - `postgres=> CREATE DATABASE development;`
+  - `postgres=> CREATE DATABASE nodejs_backend_db;`
 
 - Then give that new user privileges to the new database then quit the `psql`.
-  - `postgres=> GRANT ALL PRIVILEGES ON DATABASE development TO admin;`
+  - `postgres=> GRANT ALL PRIVILEGES ON DATABASE nodejs_backend_db TO admin;`
   - `postgres=> \q`
+
+###### 4. Run db migrations and seeds:
+ - `sequelize db:migrate && sequelize db:seed:all`
  
  ------------
-
- ##### Setup database tables:
- - `yarn run reset`
  
  ##### Start development build:
  - `yarn start:dev`
-
+ 
  ##### Start production build:
  - `yarn start`
