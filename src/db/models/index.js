@@ -5,18 +5,22 @@ const path = require('path');
 const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
-// import {}
-const config = require("../db.config.js")[env];
+const config = require("../db.config")[env];
 const db = {};
 
 let sequelize;
-console.log(config);
 console.log(env);
-if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);
-} else {
-  sequelize = new Sequelize(config.database, config.username, config.password, config);
-}
+  sequelize = new Sequelize("postgres://rkwmilbswrezam:e35716dfbd9e5c580f33bae21bdff7f22c8e843da2378c0281c73c7c3bf5af2b@ec2-34-230-167-186.compute-1.amazonaws.com:5432/d86kb64k965n7b?sslmode=require", {
+  ssl: {
+    rejectUnauthorized: false
+  },
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false
+      }
+    },
+});
 
 fs
   .readdirSync(__dirname)
@@ -24,7 +28,7 @@ fs
     return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
   })
   .forEach(file => {
-    const model = sequelize['import'](path.join(__dirname, file));
+    const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes)
     db[model.name] = model;
   });
 

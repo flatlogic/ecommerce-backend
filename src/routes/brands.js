@@ -1,38 +1,38 @@
 const express = require('express');
 
-const ProductsService = require('../services/products');
-const ProductsDBApi = require('../db/api/products');
+const BrandsService = require('../services/brands');
+const BrandsDBApi = require('../db/api/brands');
 const wrapAsync = require('../helpers').wrapAsync;
 
 const router = express.Router();
 
 router.post('/', wrapAsync(async (req, res) => {
-  await ProductsService.create(req.body.data, req.currentUser);
+  await BrandsService.create(req.body.data, req.currentUser);
   const payload = true;
   res.status(200).send(payload);
 }));
 
 router.put('/:id', wrapAsync(async (req, res) => {
-  await ProductsService.update(req.body.data, req.body.id, req.currentUser);
+  await BrandsService.update(req.body.data, req.body.id, req.currentUser);
   const payload = true;
   res.status(200).send(payload);
 }));
 
 router.delete('/:id', wrapAsync(async (req, res) => {
-  await ProductsService.remove(req.params.id, req.currentUser);
+  await BrandsService.remove(req.params.id, req.currentUser);
   const payload = true;
   res.status(200).send(payload);
 }));
 
 router.get('/', wrapAsync(async (req, res) => {
-  const payload = await ProductsDBApi.findAll(
+  const payload = await BrandsDBApi.findAll(
     req.query,
   );
 
   res.status(200).send(payload);
 }));
 router.get('/autocomplete', async (req, res) => {
-  const payload = await ProductsDBApi.findAllAutocomplete(
+  const payload = await BrandsDBApi.findAllAutocomplete(
     req.query.query,
     req.query.limit,
   );
@@ -41,7 +41,7 @@ router.get('/autocomplete', async (req, res) => {
 });
 
 router.get('/:id', wrapAsync(async (req, res) => {
-  const payload = await ProductsDBApi.findBy(
+  const payload = await BrandsDBApi.findBy(
     { id: req.params.id },
   );
 
