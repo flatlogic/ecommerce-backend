@@ -8,6 +8,7 @@ const EmailSender = require('./email');
 const config = require('../config');
 const helpers = require('../helpers');
 
+
 class Auth {
   static async signup(email, password, options = {}) {
     const user = await UsersDBApi.findBy({email});
