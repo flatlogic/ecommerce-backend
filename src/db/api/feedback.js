@@ -15,7 +15,10 @@ module.exports = class FeedbackDBApi {
     const feedback = await db.feedback.create(
       {
         id: data.id || undefined,
-feedbate_date: data.feedbate_date 
+        order_date: data.feedback_date 
+        ||
+        null,
+feedback_date: data.feedback_date 
         ||
         null,
 amount: data.amount 
@@ -59,12 +62,22 @@ status: data.status
       transaction,
     });
 
+    await FileDBApi.replaceRelationFiles(
+      {
+        belongsTo: db.feedback.getTableName(),
+        belongsToColumn: 'image',
+        belongsToId: feedback.id,
+      },
+      data.image,
+      options,
+    );
+
 
     return feedback;
   }
 
   static async update(id, data, options) {
-    console.log(data);
+    
     const currentUser = (options && options.currentUser) || {id: null};
     const transaction = (options && options.transaction) || undefined;
 
@@ -74,13 +87,31 @@ status: data.status
 
     await feedback.update(
       {
-order_date: data.order_date
+        order_date: data.feedback_date 
         ||
         null,
-amount: data.amount
+feedback_date: data.feedback_date 
         ||
         null,
-status: data.status
+amount: data.amount 
+        ||
+        null,
+status: data.status 
+        ||
+        null,
+        rating: data.rating 
+        ||
+        null,
+        firstname: data.firstname 
+        ||
+        null,
+        lastname: data.lastname 
+        ||
+        null,
+        avatar: data.avatar 
+        ||
+        null,
+        review: data.review 
         ||
         null,
 
@@ -101,6 +132,16 @@ status: data.status
     await feedback.setPayment(data.payment || null, {
       transaction,
     });
+
+    await FileDBApi.replaceRelationFiles(
+      {
+        belongsTo: db.feedback.getTableName(),
+        belongsToColumn: 'image',
+        belongsToId: feedback.id,
+      },
+      data.image,
+      options,
+    );
 
 
     return feedback;
@@ -151,6 +192,10 @@ status: data.status
       transaction
     });
 
+    output.image = await feedback.getImage({
+      transaction
+    });
+
 
     return output;
   }
@@ -177,6 +222,11 @@ status: data.status
       {
         model: db.payments,
         as: 'payment',
+      },
+
+      {
+        model: db.file,
+        as: 'image',
       },
 
     ];

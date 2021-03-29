@@ -14,7 +14,7 @@ module.exports = function(sequelize, DataTypes) {
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
       },
-      feedbate_date: {
+      feedback_date: {
         type: DataTypes.DATE,
       },
 
@@ -56,6 +56,16 @@ module.exports = function(sequelize, DataTypes) {
   );
 
   feedback.associate = (db) => {
+
+    db.feedback.hasMany(db.file, {
+      as: 'image',
+      foreignKey: 'belongsToId',
+      constraints: false,
+      scope: {
+        belongsTo: db.feedback.getTableName(),
+        belongsToColumn: 'image',
+      },
+    });
 
     db.feedback.belongsTo(db.products, {
       as: 'product',

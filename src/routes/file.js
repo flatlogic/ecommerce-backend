@@ -27,6 +27,14 @@ router.post('/upload/products/image', passport.authenticate('jwt', {session: fal
   })(req, res);
 });
 
+router.post('/upload/feedbacks/image', passport.authenticate('jwt', {session: false}), (req, res) => {
+  fileRequest('feedbacks/image', {
+    entity: null,
+    maxFileSize: 10 * 1024 * 1024,
+    folderIncludesAuthenticationUid: false,
+  })(req, res);
+});
+
 router.post('/upload/users/avatar', passport.authenticate('jwt', {session: false}), (req, res) => {
   fileRequest('users/avatar', {
     entity: null,
