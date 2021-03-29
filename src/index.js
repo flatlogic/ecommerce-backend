@@ -46,7 +46,7 @@ app.use('/api/categories', categoriesRoutes);
 
 app.use('/api/brands', brandsRoutes);
 
-app.use('/api/feedback', passport.authenticate('jwt', {session: false}), feedbackRoutes);
+app.use('/api/feedback', feedbackRoutes);
 
 app.use('/api/orders', passport.authenticate('jwt', {session: false}), ordersRoutes);
 

@@ -23,10 +23,11 @@ exports.fileRequest = function fileRequest(
   },
 ) {
   return (req, res) => {
-    if (!req.currentUser) {
-      res.sendStatus(403);
-      return;
-    }
+    // off auth
+    // if (!req.currentUser) {
+    //   res.sendStatus(403);
+    //   return;
+    // }
 
     if (
       validations.entity

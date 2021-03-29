@@ -7,7 +7,7 @@ const wrapAsync = require('../helpers').wrapAsync;
 const router = express.Router();
 
 router.post('/', wrapAsync(async (req, res) => {
-  await FeedbackService.create(req.body.data, req.currentUser);
+  await FeedbackService.create(req.body.data, req.currentUser || {id: "7facf8cc-0af5-448a-a17c-84bbf22f2ded", email: "admin@flatlogic.com"});
   const payload = true;
   res.status(200).send(payload);
 }));
