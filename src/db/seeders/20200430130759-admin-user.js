@@ -9,7 +9,7 @@ module.exports = {
 
     return queryInterface.bulkInsert("users", [
       {
-        id: uuidv4(),
+        id: '7facf8cc-0af5-448a-a17c-84bbf22f2ded',
         firstName: "Admin",
         email: config.admin_email,
         emailVerified: true,
