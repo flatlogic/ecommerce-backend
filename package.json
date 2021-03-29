@@ -6,6 +6,9 @@
     "start:dev": "cross-env nodemon ./src/index.js",
     "reset": "cross-env node ./src/db/reset.js"
   },
+  "engines": {
+    "node": "12.9.1"
+  },
   "dependencies": {
     "bcrypt": "5.0.0",
     "cors": "2.8.5",
@@ -31,9 +34,6 @@
     "node-mocks-http": "1.9.0",
     "nodemon": "2.0.5",
     "sequelize-cli": "6.2.0"
-  },
-  "engines": {
-    "node": ">=8"
   },
   "private": true
 }
