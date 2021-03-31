@@ -3,7 +3,7 @@ const { v4: uuidv4 } = require("uuid");
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert("products", [
+    return queryInterface.bulkInsert("blogs", [
       {
         id: "07aeff53-31e5-4276-8307-f855b22b6436",
         title: "The beauty of astronomy is that anybody can do it",
