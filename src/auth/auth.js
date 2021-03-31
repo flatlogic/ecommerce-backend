@@ -10,7 +10,6 @@ const GoogleStrategy = require('passport-google-oauth2').Strategy;
 const MicrosoftStrategy = require('passport-microsoft').Strategy;
 const UsersDBApi = require('../db/api/users');
 
-
 passport.use(new JWTstrategy({
   passReqToCallback: true,
   secretOrKey: config.secret_key,
@@ -22,9 +21,8 @@ passport.use(new JWTstrategy({
     if (user && user.disabled) {
       return done (new Error(`User '${user.email}' is disabled`));
     }
-
+    
     req.currentUser = user;
-
     return done(null, user);
   } catch (error) {
     done(error);

@@ -15,6 +15,8 @@ const fileRoutes = require('./routes/file');
 
 const productsRoutes = require('./routes/products');
 
+const blogsRoutes = require('./routes/blogs');
+
 const categoriesRoutes = require('./routes/categories');
 
 const brandsRoutes = require('./routes/brands');
@@ -41,6 +43,8 @@ app.use('/api/file', fileRoutes);
 
 
 app.use('/api/products', productsRoutes);
+
+app.use('/api/blogs', blogsRoutes);
 
 app.use('/api/categories', categoriesRoutes);
 
