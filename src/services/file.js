@@ -24,7 +24,7 @@ exports.fileRequest = function fileRequest(
 ) {
   return (req, res) => {
     // off auth
-    if (!req.currentUser) {
+    if (!req.currentUser && !req.feedback) {
       res.sendStatus(403);
       return;
     }
