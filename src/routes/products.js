@@ -1,9 +1,8 @@
 const express = require('express');
-
 const ProductsService = require('../services/products');
 const ProductsDBApi = require('../db/api/products');
 const wrapAsync = require('../helpers').wrapAsync;
-
+const passport = require('passport');
 const router = express.Router();
 
 router.post('/', wrapAsync(async (req, res) => {
@@ -18,7 +17,7 @@ router.put('/:id', wrapAsync(async (req, res) => {
   res.status(200).send(payload);
 }));
 
-router.delete('/:id', wrapAsync(async (req, res) => {
+router.delete('/:id', passport.authenticate('jwt', {session: false}), wrapAsync(async (req, res) => {
   await ProductsService.remove(req.params.id, req.currentUser);
   const payload = true;
   res.status(200).send(payload);

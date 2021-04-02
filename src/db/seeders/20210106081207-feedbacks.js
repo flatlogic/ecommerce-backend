@@ -13,7 +13,6 @@ module.exports = {
         lastname: "Smith",
         review:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ut ullamcorper leo, eget euismod orci. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum ultricies aliquam.",
-        rating: 4,
         status: "visible",
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -27,7 +26,6 @@ module.exports = {
         lastname: "Harrison",
         review:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ut ullamcorper leo, eget euismod orci. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum ultricies aliquam.",
-        rating: 4,
         status: "visible",
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -41,7 +39,6 @@ module.exports = {
         lastname: "Richardson",
         review:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ut ullamcorper leo, eget euismod orci. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum ultricies aliquam.",
-        rating: 4,
         status: "visible",
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -55,7 +52,6 @@ module.exports = {
         lastname: "Dobson",
         review:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ut ullamcorper leo, eget euismod orci. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum ultricies aliquam.",
-        rating: 4,
         status: "visible",
         createdAt: new Date(),
         updatedAt: new Date(),
