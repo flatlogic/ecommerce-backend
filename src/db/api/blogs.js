@@ -87,31 +87,31 @@ module.exports = class BlogsDBApi {
         status: data.status 
         ||
         null,
-        meta_description: data.rating 
+        meta_description: data.meta_description 
         ||
         null,
-        keywords: data.rating 
+        keywords: data.keywords 
         ||
         null,
-        meta_author: data.rating 
+        meta_author: data.meta_author 
         ||
         null,
-        meta_og_title: data.rating 
+        meta_og_title: data.meta_og_title 
         ||
         null,
-        meta_og_url: data.rating 
+        meta_og_url: data.meta_og_url 
         ||
         null,
-        meta_og_image: data.rating 
+        meta_og_image: data.meta_og_image 
         ||
         null,
-        meta_fb_id: data.rating 
+        meta_fb_id: data.meta_fb_id 
         ||
         null,
-        meta_og_sitename: data.rating 
+        meta_og_sitename: data.meta_og_sitename 
         ||
         null,
-        post_twitter: data.rating 
+        post_twitter: data.post_twitter 
         ||
         null,
         importHash: data.importHash || null,
@@ -271,31 +271,31 @@ module.exports = class BlogsDBApi {
         status: data.status 
         ||
         null,
-        meta_description: data.rating 
+        meta_description: data.meta_description 
         ||
         null,
-        keywords: data.rating 
+        keywords: data.keywords 
         ||
         null,
-        meta_author: data.rating 
+        meta_author: data.meta_author 
         ||
         null,
-        meta_og_title: data.rating 
+        meta_og_title: data.meta_og_title 
         ||
         null,
-        meta_og_url: data.rating 
+        meta_og_url: data.meta_og_url 
         ||
         null,
-        meta_og_image: data.rating 
+        meta_og_image: data.meta_og_image 
         ||
         null,
-        meta_fb_id: data.rating 
+        meta_fb_id: data.meta_fb_id 
         ||
         null,
-        meta_og_sitename: data.rating 
+        meta_og_sitename: data.meta_og_sitename 
         ||
         null,
-        post_twitter: data.rating 
+        post_twitter: data.post_twitter 
         ||
         null,
         updatedById: currentUser.id,

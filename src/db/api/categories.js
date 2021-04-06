@@ -18,7 +18,33 @@ module.exports = class CategoriesDBApi {
 title: data.title 
         ||
         null,
-
+        meta_description: data.meta_description 
+        ||
+        null,
+        keywords: data.keywords 
+        ||
+        null,
+        meta_author: data.meta_author 
+        ||
+        null,
+        meta_og_title: data.meta_og_title 
+        ||
+        null,
+        meta_og_url: data.meta_og_url 
+        ||
+        null,
+        meta_og_image: data.meta_og_image 
+        ||
+        null,
+        meta_fb_id: data.meta_fb_id 
+        ||
+        null,
+        meta_og_sitename: data.meta_og_sitename 
+        ||
+        null,
+        post_twitter: data.post_twitter 
+        ||
+        null,
         importHash: data.importHash || null,
         createdById: currentUser.id,
         updatedById: currentUser.id,
@@ -45,7 +71,33 @@ title: data.title
 title: data.title
         ||
         null,
-
+        meta_description: data.meta_description 
+        ||
+        null,
+        keywords: data.keywords 
+        ||
+        null,
+        meta_author: data.meta_author 
+        ||
+        null,
+        meta_og_title: data.meta_og_title 
+        ||
+        null,
+        meta_og_url: data.meta_og_url 
+        ||
+        null,
+        meta_og_image: data.meta_og_image 
+        ||
+        null,
+        meta_fb_id: data.meta_fb_id 
+        ||
+        null,
+        meta_og_sitename: data.meta_og_sitename 
+        ||
+        null,
+        post_twitter: data.post_twitter 
+        ||
+        null,
         updatedById: currentUser.id,
       },
       {transaction},
