@@ -18,6 +18,33 @@ module.exports = function(sequelize, DataTypes) {
         type: DataTypes.TEXT,
       
       },
+      meta_description: {
+        type: DataTypes.TEXT,
+      },
+      keywords: {
+        type: DataTypes.TEXT,
+      },
+      meta_author: {
+        type: DataTypes.TEXT,
+      },
+      meta_og_title: {
+        type: DataTypes.TEXT,
+      },
+      meta_og_url: {
+        type: DataTypes.TEXT,
+      },
+      meta_og_image: {
+        type: DataTypes.TEXT,
+      },
+      meta_fb_id: {
+        type: DataTypes.TEXT,
+      },
+      meta_og_sitename: {
+        type: DataTypes.TEXT,
+      },
+      post_twitter: {
+        type: DataTypes.TEXT,
+      },
       price: {
         type: DataTypes.DECIMAL,
       

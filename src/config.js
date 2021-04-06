@@ -5,6 +5,7 @@ var config = {
     saltRounds: 12
   },
   admin_pass: "password",
+  client_pass: "123456",
   admin_email: "admin@flatlogic.com",
   providers: {
     LOCAL: 'local',

@@ -42,6 +42,33 @@ status: data.status
         review: data.review 
         ||
         null,
+        meta_description: data.rating 
+        ||
+        null,
+        keywords: data.rating 
+        ||
+        null,
+        meta_author: data.rating 
+        ||
+        null,
+        meta_og_title: data.rating 
+        ||
+        null,
+        meta_og_url: data.rating 
+        ||
+        null,
+        meta_og_image: data.rating 
+        ||
+        null,
+        meta_fb_id: data.rating 
+        ||
+        null,
+        meta_og_sitename: data.rating 
+        ||
+        null,
+        post_twitter: data.rating 
+        ||
+        null,
         importHash: data.importHash || null,
         createdById: currentUser.id,
         updatedById: currentUser.id,
@@ -114,7 +141,33 @@ status: data.status
         review: data.review 
         ||
         null,
-
+        meta_description: data.rating 
+        ||
+        null,
+        keywords: data.rating 
+        ||
+        null,
+        meta_author: data.rating 
+        ||
+        null,
+        meta_og_title: data.rating 
+        ||
+        null,
+        meta_og_url: data.rating 
+        ||
+        null,
+        meta_og_image: data.rating 
+        ||
+        null,
+        meta_fb_id: data.rating 
+        ||
+        null,
+        meta_og_sitename: data.rating 
+        ||
+        null,
+        post_twitter: data.rating 
+        ||
+        null,
         updatedById: currentUser.id,
       },
       {transaction},

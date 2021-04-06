@@ -87,7 +87,33 @@ module.exports = class BlogsDBApi {
         status: data.status 
         ||
         null,
-
+        meta_description: data.rating 
+        ||
+        null,
+        keywords: data.rating 
+        ||
+        null,
+        meta_author: data.rating 
+        ||
+        null,
+        meta_og_title: data.rating 
+        ||
+        null,
+        meta_og_url: data.rating 
+        ||
+        null,
+        meta_og_image: data.rating 
+        ||
+        null,
+        meta_fb_id: data.rating 
+        ||
+        null,
+        meta_og_sitename: data.rating 
+        ||
+        null,
+        post_twitter: data.rating 
+        ||
+        null,
         importHash: data.importHash || null,
         createdById: currentUser.id,
         updatedById: currentUser.id,
@@ -245,7 +271,33 @@ module.exports = class BlogsDBApi {
         status: data.status 
         ||
         null,
-
+        meta_description: data.rating 
+        ||
+        null,
+        keywords: data.rating 
+        ||
+        null,
+        meta_author: data.rating 
+        ||
+        null,
+        meta_og_title: data.rating 
+        ||
+        null,
+        meta_og_url: data.rating 
+        ||
+        null,
+        meta_og_image: data.rating 
+        ||
+        null,
+        meta_fb_id: data.rating 
+        ||
+        null,
+        meta_og_sitename: data.rating 
+        ||
+        null,
+        post_twitter: data.rating 
+        ||
+        null,
         updatedById: currentUser.id,
       },
       {transaction},
