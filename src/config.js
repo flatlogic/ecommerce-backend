@@ -15,7 +15,7 @@ var config = {
   secret_key: 'HUEyqESqgQ1yTwzVlO6wprC9Kf1J1xuA',
   remote: 'https://sing-generator-node.herokuapp.com',
   port: process.env.NODE_ENV === "production" ? "" : "8080",
-  hostUI: process.env.NODE_ENV === "production" ? "https://react-user-management.herokuapp.com" : "http://localhost",
+  hostUI: process.env.NODE_ENV === "production" ? "https://flatlogic-ecommerce.herokuapp.com" : "http://localhost",
   portUI: process.env.NODE_ENV === "production" ? "" : "3000",
   google: {
     clientId: '671001533244-kf1k1gmp6mnl0r030qmvdu6v36ghmim6.apps.googleusercontent.com',

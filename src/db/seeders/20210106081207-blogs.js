@@ -7,7 +7,7 @@ module.exports = {
       {
         id: "07aeff53-31e5-4276-8307-f855b22b6436",
         title: "The beauty of astronomy is that anybody can do it",
-        author_name: "William Johnson",
+        author_name: "Hillary Johnson",
         status: "visible",
         meta_description: "Beautifully designed web application template built with React and Bootstrap to create modern apps and speed up development",
         keywords: "flatlogic, react templates",
@@ -45,7 +45,7 @@ module.exports = {
       {
         id: "c4245ff9-6a53-4b13-8539-0b69b442cfd1",
         title: "The beauty of astronomy is that anybody can do it",
-        author_name: "William Johnson",
+        author_name: "Hillary Johnson",
         status: "visible",
         meta_description: "Beautifully designed web application template built with React and Bootstrap to create modern apps and speed up development",
         keywords: "flatlogic, react templates",
@@ -83,7 +83,7 @@ module.exports = {
       {
         id: "57fbad3f-528a-43b2-83e8-32ba30708194",
         title: "The beauty of astronomy is that anybody can do it",
-        author_name: "Hillary Johnson",
+        author_name: "William Johnson",
         status: "visible",
         meta_description: "Beautifully designed web application template built with React and Bootstrap to create modern apps and speed up development",
         keywords: "flatlogic, react templates",
