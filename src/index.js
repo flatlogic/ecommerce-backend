@@ -2,12 +2,16 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const passport = require('passport');
+const cron = require('node-cron');
 const path = require('path');
 const fs = require('fs');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const db = require('./db/models');
 const Stripe = require("stripe");
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
 
 const authRoutes = require('./routes/auth');
 const fileRoutes = require('./routes/file');
@@ -73,7 +77,7 @@ app.post('/payment/session-initiate', async (req, res) => {
     cancelUrl,
   } = req.body;
 
-  const stripe = Stripe('sk_test_51HUCprJMc0TzjdrXPHLgWIRXobDv0IBnARG7Urq9P2Vo1sHe8WSbz0njlqG1gRh7G3hMiysLAXIkgK13F6SheDn400agRwXiv7');
+  const stripe = Stripe(process.env.STRIPE_KEY);
 
   let session;
 
@@ -97,7 +101,7 @@ app.post('/payment/session-initiate', async (req, res) => {
 });
 
 app.post('/payment/session-complete', async (req, res) => {
-  const stripe = Stripe('sk_test_51HUCprJMc0TzjdrXPHLgWIRXobDv0IBnARG7Urq9P2Vo1sHe8WSbz0njlqG1gRh7G3hMiysLAXIkgK13F6SheDn400agRwXiv7');
+  const stripe = Stripe(process.env.STRIPE_KEY);
 
   let event;
 
@@ -105,7 +109,7 @@ app.post('/payment/session-complete', async (req, res) => {
     event = stripe.webhooks.constructEvent(
         req.rawBody,
         req.headers['stripe-signature'],
-        'acct_1HUCprJMc0TzjdrX'
+        process.env.STRIPE_SIGNATURE
     );
   } catch (error) {
     return res.status(400).send(`Webhook Error: ${error.message}`);
@@ -131,6 +135,13 @@ const PORT = process.env.PORT || 8080;
 db.sequelize.sync().then(function () {
   app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`);
+  });
+  cron.schedule('0 0 */1 * * *', () => {
+    exec('yarn reset', (err) => {
+      if (err) {
+        console.error(err);
+      }
+    });
   });
 });
 
