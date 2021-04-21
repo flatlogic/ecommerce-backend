@@ -144,7 +144,7 @@ class Auth {
       const token = await UsersDBApi.generateEmailVerificationToken(
         email,
       );
-      link = `${config.uiUrl}/verify-email?token=${token}`;
+      link = `${config.uiUrl}/verify?token=${token}`;
     } catch (error) {
       console.error(error);
       throw new ValidationError(
@@ -175,7 +175,7 @@ class Auth {
       const token = await UsersDBApi.generatePasswordResetToken(
         email,
       );
-      link = `${config.uiUrl}/password-reset?token=${token}`;
+      link = `${config.uiUrl}/reset?token=${token}`;
     } catch (error) {
       console.error(error);
       throw new ValidationError(
@@ -270,7 +270,7 @@ class Auth {
       config.bcrypt.saltRounds,
     );
 
-    return UserDBApi.updatePassword(
+    return UsersDBApi.updatePassword(
       user.id,
       hashedPassword,
       options,

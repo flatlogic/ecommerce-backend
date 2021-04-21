@@ -28,11 +28,11 @@ var config = {
   uploadDir: os.tmpdir(),
   email: {
     from: 'support@flatlogic.com',
-    host: 'mail.flatlogic.com',
-    port: 465,
+    host: 'smtp.gmail.com',
+    port: 587,
     auth: {
       user: 'support@flatlogic.com',
-      pass: 'Flatlogic1863',
+      pass: 'UBU2JGC2wEqc',
     },
     tls: {
       rejectUnauthorized: false
@@ -42,6 +42,6 @@ var config = {
 
 config.host = process.env.NODE_ENV === "production" ? config.remote : "http://localhost";
 config.apiUrl = `${config.host}${config.port ? `:${config.port}` : ``}/api`;
-config.uiUrl = `${config.hostUI}${config.portUI ? `:${config.portUI}` : ``}/#`;
+config.uiUrl = `${config.hostUI}${config.portUI ? `:${config.portUI}` : ``}`;
 
 module.exports = config;
