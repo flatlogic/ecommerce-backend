@@ -32,7 +32,7 @@ var config = {
     port: 587,
     auth: {
       user: 'support@flatlogic.com',
-      pass: 'UBU2JGC2wEqc',
+      pass: process.env.EMAIL_PASS || 'Flatlogic1863',
     },
     tls: {
       rejectUnauthorized: false
