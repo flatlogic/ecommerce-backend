@@ -1,13 +1,18 @@
+const useSsl = process.env.DB_SSL === "true";
+const dialectOptions = useSsl
+  ? {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false
+      }
+    }
+  : {};
+
 module.exports = {
   production: {
     use_env_variable: "DATABASE_URL",
     dialect: "postgres",
-    dialectOptions: {
-      ssl: {
-        require: true,
-        rejectUnauthorized: false // <<<<<<< YOU NEED THIS
-      }
-    },
+    dialectOptions
   },
   development: {
     username: 'postgres',
