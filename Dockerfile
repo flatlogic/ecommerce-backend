@@ -1,4 +1,4 @@
-FROM node:12-buster
+FROM node:12.9.1-stretch
 WORKDIR /app
 COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile
