@@ -3,6 +3,7 @@ const cors = require('cors');
 const app = express();
 const passport = require('passport');
 const cron = require('node-cron');
+const resetDemo = require('./db/resetDemo');
 const path = require('path');
 const fs = require('fs');
 const bodyParser = require('body-parser');
@@ -136,13 +137,20 @@ db.sequelize.sync().then(function () {
   app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`);
   });
-  cron.schedule('0 0 */1 * * *', () => {
-    exec('yarn reset', (err) => {
-      if (err) {
-        console.error(err);
+  if (process.env.DEMO_RESET_HOURLY === 'true') {
+    cron.schedule('0 0 * * * *', async () => {
+      try {
+        const result = await resetDemo(db.sequelize);
+        if (result === 'skipped') {
+          console.log('Hourly demo reset skipped: another reset is running');
+        } else {
+          console.log('Hourly demo reset completed');
+        }
+      } catch (error) {
+        console.error('Hourly demo reset failed: ' + error.message);
       }
-    });
-  });
+    }, { timezone: 'UTC' });
+  }
 });
 
 module.exports = app;
