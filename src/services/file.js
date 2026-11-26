@@ -2,83 +2,53 @@ const formidable = require('formidable');
 const fs = require('fs');
 const config = require('../config');
 const path = require('path');
+const safeFiles = require('./safe-files.cjs');
 
-function ensureDirectoryExistence(filePath) {
-  var dirname = path.dirname(filePath);
-
-  if (fs.existsSync(dirname)) {
-    return true;
-  }
-
-  ensureDirectoryExistence(dirname);
-  fs.mkdirSync(dirname);
-}
-
-exports.fileRequest = function fileRequest(
-  folder,
-  validations = {
-    entity: null,
-    maxFileSize: null,
-    folderIncludesAuthenticationUid: false,
-  },
-) {
-  return (req, res) => {
-    // off auth
-    if (!req.currentUser && !req.feedback) {
+exports.fileRequest = function fileRequest(folder, validations = {}) {
+  return (req, res, next) => {
+    if ((!req.currentUser && !req.feedback) || validations.entity) {
       res.sendStatus(403);
       return;
     }
 
-    if (
-      validations.entity
-    ) {
-      res.sendStatus(403);
-      return;
-    }
-
+    let uploadFolder = folder;
     if (validations.folderIncludesAuthenticationUid) {
-      folder = folder.replace(
-        ':userId',
-        req.currentUser.authenticationUid,
-      );
-      if (
-        !req.currentUser.authenticationUid ||
-        !folder.includes(req.currentUser.authenticationUid)
-      ) {
+      const uid = req.currentUser.authenticationUid;
+      if (!uid) {
         res.sendStatus(403);
         return;
       }
+      uploadFolder = folder.replace(':userId', uid);
     }
 
     const form = new formidable.IncomingForm();
     form.uploadDir = config.uploadDir;
-
-    if (validations && validations.maxFileSize) {
-      form.maxFileSize = validations.maxFileSize;
-    }
-
-    form.parse(req, function (err, fields, files) {
-      const filename = String(fields.filename);
-      const fileTempUrl = files.file.path;
-
-      if (!filename) {
-        fs.unlinkSync(fileTempUrl);
-        res.sendStatus(500);
+    form.maxFileSize = validations.maxFileSize || 10 * 1024 * 1024;
+    form.parse(req, (error, fields, files) => {
+      if (error) {
+        next(error);
         return;
       }
-
-      const privateUrl = path.join(
-        form.uploadDir,
-        folder,
-        filename,
-      );
-      ensureDirectoryExistence(privateUrl);
-      fs.renameSync(fileTempUrl, privateUrl);
+      const file = files.file;
+      if (!file || typeof file.path !== 'string') {
+        res.sendStatus(400);
+        return;
+      }
+      try {
+        const destination = safeFiles.uploadPath(
+          path.join(config.uploadDir, 'demo-uploads'), uploadFolder, fields.filename
+        );
+        fs.copyFileSync(file.path, destination, fs.constants.COPYFILE_EXCL);
+      } catch (error) {
+        fs.unlinkSync(file.path);
+        if (error.code === 'EEXIST') {
+          error.status = 409;
+        }
+        next(error);
+        return;
+      }
+      fs.unlinkSync(file.path);
       res.sendStatus(200);
     });
-
-    form.on('error', function (err) {
-      res.status(500).send(err);
-    });
-  }
-}
+  };
+};
