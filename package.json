@@ -7,10 +7,10 @@
     "reset": "cross-env node ./src/db/reset.js"
   },
   "engines": {
-    "node": "12.9.1"
+    "node": ">=24.22.3 <25"
   },
   "dependencies": {
-    "bcrypt": "5.0.0",
+    "bcrypt": "6.0.0",
     "cors": "2.8.5",
     "cross-env": "7.0.2",
     "dotenv": "^8.2.0",
@@ -30,9 +30,9 @@
     "passport-google-oauth2": "^0.2.0",
     "passport-jwt": "^4.0.0",
     "passport-microsoft": "^0.1.0",
-    "pg": "8.4.1",
+    "pg": "8.23.1",
     "pg-hstore": "2.3.3",
-    "sequelize": "6.3.5",
+    "sequelize": "6.37.8",
     "sequelize-cli": "6.2.0",
     "sqlite": "4.0.15",
     "stripe": "^8.135.0"

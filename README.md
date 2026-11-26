@@ -8,9 +8,12 @@
 
 ## 🚀 Quick Start
 
-#### 1. Install dependencies:
+#### 1. Install dependencies
+
+Use Node.js 24.22.3 or a later 24.x patch and Yarn Classic (1.22.22).
+
 ```bash
-yarn install
+yarn install --frozen-lockfile
 ```
 
 ---
