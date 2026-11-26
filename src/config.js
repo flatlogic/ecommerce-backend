@@ -1,4 +1,11 @@
 const os = require('os');
+const { randomBytes } = require('node:crypto');
+
+const production = process.env.NODE_ENV === 'production';
+if (production && !process.env.JWT_SECRET) {
+  throw new Error('Set JWT_SECRET before starting the production backend');
+}
+
 
 const backendUrl =
   process.env.BACKEND_URL || 'https://flatlogic-ecommerce-backend.herokuapp.com';
@@ -20,7 +27,7 @@ var config = {
     GOOGLE: 'google',
     MICROSOFT: 'microsoft'
   },
-  secret_key: 'HUEyqESqgQ1yTwzVlO6wprC9Kf1J1xuA',
+  secret_key: process.env.JWT_SECRET || randomBytes(32).toString('hex'),
   remote: backendUrl,
   port: process.env.NODE_ENV === "production" ? "" : "8080",
   hostUI: frontendUrl,

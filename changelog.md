@@ -14,6 +14,7 @@
 ### Fixed
 
 - Keep local and OAuth sessions tied to the signed-in account and omit private authentication fields from its profile. Reject duplicate signups.
+- Require a deployment-specific JWT signing key in production.
 - Preserve the original request body when verifying a Stripe checkout webhook signature.
 
 ## [1.0.1] - 26/11/2026

@@ -1,4 +1,4 @@
-const useSsl = process.env.DB_SSL === "true";
+const useSsl = process.env.DB_SSL !== "false";
 const dialectOptions = useSsl
   ? {
       ssl: {

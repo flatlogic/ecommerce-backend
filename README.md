@@ -58,7 +58,10 @@ This command recreates the local development tables. For the hosted demo, see th
 yarn start:dev
 ```
 
-#### 5. Start production build:
+#### 5. Start the production server
+
+Set `DATABASE_URL` and a private `JWT_SECRET` in the deployment environment. Generate the signing key once with `openssl rand -hex 32` and keep it across restarts. Changing it signs out existing sessions. PostgreSQL connections use TLS by default in production. For a private database configured without TLS, set `DB_SSL=false`.
+
 ```bash
 yarn start
 ```

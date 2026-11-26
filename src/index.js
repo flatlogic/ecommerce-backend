@@ -1,3 +1,7 @@
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
+
 const express = require('express');
 const cors = require('cors');
 const app = express();
@@ -9,9 +13,6 @@ const fs = require('fs');
 const helmet = require('helmet');
 const db = require('./db/models');
 const Stripe = require("stripe");
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config();
-}
 
 const authRoutes = require('./routes/auth');
 const fileRoutes = require('./routes/file');
