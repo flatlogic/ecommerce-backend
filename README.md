@@ -48,6 +48,8 @@ CREATE DATABASE development OWNER postgres;
 yarn reset
 ```
 
+This command recreates the local development tables. For the hosted demo, see the [hourly reset setup](ops/demo-baseline/README.md). It restores sample data from a read-only PostgreSQL baseline.
+
 #### 4. Start development server:
 ```bash
 yarn start:dev
