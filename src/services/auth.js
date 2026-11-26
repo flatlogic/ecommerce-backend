@@ -2,6 +2,7 @@ const UsersDBApi = require('../db/api/users');
 const ValidationError = require('./notifications/errors/validation');
 const ForbiddenError = require('./notifications/errors/forbidden');
 const bcrypt = require('bcrypt');
+const { Op } = require('sequelize');
 const EmailAddressVerificationEmail = require('./email/list/addressVerification');
 const PasswordResetEmail = require('./email/list/passwordReset');
 const EmailSender = require('./email');
@@ -13,45 +14,11 @@ class Auth {
   static async signup(email, password, options = {}) {
     const user = await UsersDBApi.findBy({email});
 
-    const hashedPassword = await bcrypt.hash(
-      password,
-      config.bcrypt.saltRounds,
-    );
-
     if (user) {
-      if (user.authenticationUid) {
-        throw new ValidationError(
-          'auth.emailAlreadyInUse',
-        );
-      }
-
-      if (user.disabled) {
-        throw new ValidationError(
-          'auth.userDisabled',
-        );
-      }
-
-      await UsersDBApi.updatePassword(
-        user.id,
-        hashedPassword,
-        options,
-      );
-
-      if (EmailSender.isConfigured) {
-        await this.sendEmailAddressVerificationEmail(
-          user.email,
-        );
-      }
-
-      const data = {
-        user: {
-          id: user.id,
-          email: user.email
-        }
-      };
-
-      return helpers.jwtSign(data);
+      throw new ValidationError('auth.emailAlreadyInUse');
     }
+
+    const hashedPassword = await bcrypt.hash(password, config.bcrypt.saltRounds);
 
     const newUser = await UsersDBApi.createFromAuth(
       {
@@ -79,7 +46,10 @@ class Auth {
   }
 
   static async signin(email, password, options = {}) {
-    const user = await UsersDBApi.findBy({email});
+    const user = await UsersDBApi.findBy({
+      email,
+      [Op.or]: [{ provider: null }, { provider: config.providers.LOCAL }],
+    });
 
     if (!user) {
       throw new ValidationError(

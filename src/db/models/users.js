@@ -123,7 +123,7 @@ module.exports = function(sequelize, DataTypes) {
     users = trimStringFields(users);
 
     if (users.provider !== providers.LOCAL && Object.values(providers).indexOf(users.provider) > -1) {
-      user.emailVerified = true;
+      users.emailVerified = true;
 
       if (!users.password) {
         const password = crypto

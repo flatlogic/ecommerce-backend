@@ -16,10 +16,13 @@ passport.use(new JWTstrategy({
   jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken()
 }, async (req, token, done) => {
   try {
-    const user = await UsersDBApi.findBy( {email: token.user.email});
+    if (!token.user?.id || !token.user.email) {
+      return done(null, false);
+    }
+    const user = await UsersDBApi.findBy({ id: token.user.id, email: token.user.email });
 
-    if (user && user.disabled) {
-      return done (new Error(`User '${user.email}' is disabled`));
+    if (!user || user.disabled) {
+      return done(null, false);
     }
     
     req.currentUser = user;
@@ -53,14 +56,18 @@ passport.use(new MicrosoftStrategy({
   }
 ));
 
-function socialStrategy(email, profile, provider, done) {
-  db.user.findOrCreate({where: {email, provider}}).then(([user, created]) => {
-    const body = {
-      id: user.id,
-      email: user.email,
-      name: profile.displayName,
-    };
-    const token = helpers.jwtSign({user: body});
-    return done(null, {token});
-  });
+async function socialStrategy(email, profile, provider, done) {
+  if (!email) return done(null, false);
+
+  try {
+    const [user] = await db.users.findOrCreate({ where: { email, provider } });
+    if (user.disabled) return done(null, false);
+
+    const token = helpers.jwtSign({
+      user: { id: user.id, email: user.email, name: profile.displayName },
+    });
+    return done(null, { token });
+  } catch (error) {
+    return done(error);
+  }
 }

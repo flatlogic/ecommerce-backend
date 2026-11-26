@@ -65,7 +65,10 @@ router.get('/me', passport.authenticate('jwt', {session: false}), (req, res) => 
     throw new ForbiddenError();
   }
 
-  const payload = req.currentUser;
+  const {
+    password, passwordResetToken, passwordResetTokenExpiresAt,
+    emailVerificationToken, emailVerificationTokenExpiresAt, ...payload
+  } = req.currentUser;
   res.status(200).send(payload);
 });
 

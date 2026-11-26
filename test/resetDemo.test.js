@@ -1,4 +1,5 @@
 const assert = require('assert');
+const { describe, it, before, after } = require('node:test');
 const path = require('path');
 const { Sequelize } = require('sequelize');
 const resetDemo = require('../src/db/resetDemo');
@@ -12,8 +13,7 @@ const tables = [
   'productsCategoriesCategories', 'productsMore_productsProducts', 'usersWishlistProducts',
 ];
 
-(socket ? describe : describe.skip)('hourly demo reset on PostgreSQL', function () {
-  this.timeout(15000);
+describe('hourly demo reset on PostgreSQL', { skip: !socket, timeout: 15000 }, function () {
   const name = 'ecommerce_demo_reset_test_' + process.pid;
   let admin, db, created = false;
 

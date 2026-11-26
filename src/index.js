@@ -6,7 +6,6 @@ const cron = require('node-cron');
 const resetDemo = require('./db/resetDemo');
 const path = require('path');
 const fs = require('fs');
-const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const db = require('./db/models');
 const Stripe = require("stripe");
@@ -41,7 +40,9 @@ app.use(helmet());
 
 require('./auth/auth');
 
-app.use(bodyParser.json());
+app.use(passport.initialize());
+app.use('/payment/session-complete', express.raw({ type: 'application/json' }));
+app.use(express.json());
 
 app.use('/api/auth', authRoutes);
 app.use('/api/file', fileRoutes);
@@ -95,7 +96,7 @@ app.post('/payment/session-initiate', async (req, res) => {
       cancel_url: cancelUrl,
     });
   } catch (error) {
-    res.status(500).send({ error });
+    return res.status(500).send({ error });
   }
 
   return res.status(200).send(session);
@@ -108,7 +109,7 @@ app.post('/payment/session-complete', async (req, res) => {
 
   try {
     event = stripe.webhooks.constructEvent(
-        req.rawBody,
+        req.body,
         req.headers['stripe-signature'],
         process.env.STRIPE_SIGNATURE
     );

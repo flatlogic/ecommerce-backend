@@ -1,5 +1,5 @@
 const validator = require('validator');
-const { v4: uuid } = require('uuid');
+const { randomUUID } = require('node:crypto');
 const Sequelize = require('./models').Sequelize;
 
 module.exports = class Utils {
@@ -7,7 +7,7 @@ module.exports = class Utils {
     let id = value;
 
     if (!validator.isUUID(id)) {
-      id = uuid();
+      id = randomUUID();
     }
 
     return id;

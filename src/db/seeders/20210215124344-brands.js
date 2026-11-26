@@ -1,5 +1,5 @@
 "use strict";
-const { v4: uuidv4 } = require("uuid");
+const { randomUUID } = require('node:crypto');
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -7,28 +7,28 @@ module.exports = {
       {
         id: '1fcb7ece-6373-405d-92ef-3f3c4e7dc721',
         name: "Poliform",
-        importHash: uuidv4(),
+        importHash: randomUUID(),
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
         id: '1fcb7ece-6373-405d-92ef-3f3c4e7dc722',
         name: "Roche Bobois",
-        importHash: uuidv4(),
+        importHash: randomUUID(),
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
         id: '1fcb7ece-6373-405d-92ef-3f3c4e7dc723',
         name: "Edra",
-        importHash: uuidv4(),
+        importHash: randomUUID(),
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
         id: '1fcb7ece-6373-405d-92ef-3f3c4e7dc724',
         name: "Kartell",
-        importHash: uuidv4(),
+        importHash: randomUUID(),
         createdAt: new Date(),
         updatedAt: new Date(),
       },

@@ -1,5 +1,5 @@
 "use strict";
-const { v4: uuidv4 } = require("uuid");
+const { randomUUID } = require('node:crypto');
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -16,7 +16,7 @@ module.exports = {
         meta_fb_id: "712557339116053",
         meta_og_sitename: "Flatlogic",
         post_twitter: "@flatlogic",
-        importHash: uuidv4(),
+        importHash: randomUUID(),
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -32,7 +32,7 @@ module.exports = {
         meta_fb_id: "712557339116053",
         meta_og_sitename: "Flatlogic",
         post_twitter: "@flatlogic",
-        importHash: uuidv4(),
+        importHash: randomUUID(),
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -48,7 +48,7 @@ module.exports = {
         meta_fb_id: "712557339116053",
         meta_og_sitename: "Flatlogic",
         post_twitter: "@flatlogic",
-        importHash: uuidv4(),
+        importHash: randomUUID(),
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -64,7 +64,7 @@ module.exports = {
         meta_fb_id: "712557339116053",
         meta_og_sitename: "Flatlogic",
         post_twitter: "@flatlogic",
-        importHash: uuidv4(),
+        importHash: randomUUID(),
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -80,7 +80,7 @@ module.exports = {
         meta_fb_id: "712557339116053",
         meta_og_sitename: "Flatlogic",
         post_twitter: "@flatlogic",
-        importHash: uuidv4(),
+        importHash: randomUUID(),
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -96,7 +96,7 @@ module.exports = {
         meta_fb_id: "712557339116053",
         meta_og_sitename: "Flatlogic",
         post_twitter: "@flatlogic",
-        importHash: uuidv4(),
+        importHash: randomUUID(),
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -112,7 +112,7 @@ module.exports = {
         meta_fb_id: "712557339116053",
         meta_og_sitename: "Flatlogic",
         post_twitter: "@flatlogic",
-        importHash: uuidv4(),
+        importHash: randomUUID(),
         createdAt: new Date(),
         updatedAt: new Date(),
       },
