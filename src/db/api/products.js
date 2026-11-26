@@ -445,6 +445,7 @@ status: data.status
       {
         where,
         include,
+        distinct: true,
         limit: limit ? Number(limit) : undefined,
         offset: offset ? Number(offset) : undefined,
         order: orderBy
